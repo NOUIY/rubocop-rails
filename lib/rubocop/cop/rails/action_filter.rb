@@ -72,7 +72,7 @@ module RuboCop
 
         RESTRICT_ON_SEND = FILTER_METHODS + ACTION_METHODS
 
-        def on_block(node) # rubocop:disable InternalAffairs/NumblockHandler
+        def on_block(node) # rubocop:disable InternalAffairs/NumblockHandler, InternalAffairs/ItblockHandler
           check_method_node(node.send_node)
         end
 

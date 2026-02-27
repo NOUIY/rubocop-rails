@@ -86,10 +86,12 @@ module RuboCop
           check_add_reference(node)
         end
 
+        # rubocop:todo InternalAffairs/ItblockHandler -- Add an alias for `on_itblock` alongside the tests for `on_numblock`.
         def on_block(node)
           check_change_table(node)
         end
         alias on_numblock on_block
+        # rubocop:enable InternalAffairs/ItblockHandler
 
         private
 
