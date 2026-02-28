@@ -44,6 +44,15 @@ RSpec.describe RuboCop::Cop::Rails::UnknownEnv, :config do
         RUBY
       end
 
+      it 'registers an offense for typo of environment name with `!=` operator' do
+        expect_offense(<<~RUBY)
+          Rails.env != 'proudction'
+                       ^^^^^^^^^^^^ Unknown environment `proudction`. Did you mean `production`?
+          'developpment' != Rails.env
+          ^^^^^^^^^^^^^^ Unknown environment `developpment`. Did you mean `development`?
+        RUBY
+      end
+
       it 'registers an offense when case condition is an unknown environment name' do
         expect_offense(<<~RUBY)
           case Rails.env

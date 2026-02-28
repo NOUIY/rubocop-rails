@@ -13,10 +13,12 @@ module RuboCop
       #   # bad
       #   Rails.env.proudction?
       #   Rails.env == 'proudction'
+      #   Rails.env != 'proudction'
       #
       #   # good
       #   Rails.env.production?
       #   Rails.env == 'production'
+      #   Rails.env != 'production'
       #
       # @example
       #   # bad
@@ -47,8 +49,8 @@ module RuboCop
 
         def_node_matcher :unknown_environment_equal?, <<~PATTERN
           {
-            (send #rails_env? {:== :===} $(str #unknown_env_name?))
-            (send $(str #unknown_env_name?) {:== :===} #rails_env?)
+            (send #rails_env? {:== :=== :!=} $(str #unknown_env_name?))
+            (send $(str #unknown_env_name?) {:== :=== :!=} #rails_env?)
           }
         PATTERN
 
