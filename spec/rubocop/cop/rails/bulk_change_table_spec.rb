@@ -708,6 +708,19 @@ RSpec.describe RuboCop::Cop::Rails::BulkChangeTable, :config do
           it_behaves_like 'no offense for postgresql'
         end
       end
+
+      context 'without adapter configuration' do
+        let(:yaml) do
+          {
+            'shared' => {},
+            'development' => {
+              'foo' => 'bar'
+            }
+          }
+        end
+
+        it_behaves_like 'no offense'
+      end
     end
 
     context 'invalid (e.g. ERB)' do

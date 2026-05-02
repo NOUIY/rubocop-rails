@@ -59,7 +59,7 @@ module RuboCop
       end
 
       def database_adapter
-        database_yaml['adapter'] || database_yaml('shared')&.fetch('adapter') || database_yaml.first.last['adapter']
+        database_yaml['adapter'] || database_yaml('shared')&.dig('adapter') || database_yaml.first.last['adapter']
       end
     end
   end
